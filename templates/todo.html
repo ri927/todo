@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>{{message}}</h1>
+
+    <table>
+        <tr><th>ID</th><th>タイトル</th></tr>
+         {% for todo in todos %}
+            <tr>
+            <td>{{todo.userid}}</td>
+           <!-- <td><a href = 'show/{{post.id}}'>{{post.title}}</a></td>-->
+           </tr>
+          {% endfor%}
+    </table>
+
+    <p><a href='/new'>新規メモ</a></p>
+{% endblock %}

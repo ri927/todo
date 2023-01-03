@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container px-4">
+  <h3 class="py-3">add todo</h3>
+  <form class="row gy-2 gx-3  align-items-center" action='/add' method="POST">
+    <div class="col-auto">
+      <div class="input-group">
+        <div class="input-group-text">todo</div>
+        <label for="autoSizingInputGroup" class="visually-hidden">タスク名</label>
+        <input type="text" class="form-control" width="30%" id="autoSizingInputGroup" name="todoname" placeholder="タスク名"
+          required>
+      </div>
+    </div>
+    <div class="col-auto">
+      <label for="autoSizingInputGroup" class="visually-hidden">日付</label>
+      <div class="input-group">
+        <div class="input-group-text">締切</div>
+        <input type="date" class="form-control" id="autoSizingInputGroup" name="date" placeholder="日付" required>
+      </div>
+    </div>
+    <div class="col-auto">
+      <label for="autoSizingInputGroup" class="visually-hidden">id</label>
+      <input type="hidden" class="form-control" id="autoSizingInputGroup" name="id" value="{{userid}}">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">登録</button>
+    </div>
+  </form>
+</div>
+
+<!--<div class="text-center py-5 px-5 mx-5 my-5">
+  <form class="row gy-2 gx-3  align-items-center" action='/add' method="POST">
+    <div class="col-auto">
+      <label for="autoSizingInputGroup" class="visually-hidden">タスク名</label>
+      <div class="input-group">
+       <div class="input-group-text">todo name</div>
+<input type="text" class="form-control" id="autoSizingInputGroup" name="todoname" placeholder="タスク名">
+</div>
+</div>
+<div class="col-auto">
+  <label for="autoSizingInputGroup" class="visually-hidden">日付</label>
+  <div class="input-group">
+        <div class="input-group-text">date</div>
+    <input type="date" class="form-control" id="autoSizingInputGroup" name="date" placeholder="日付">
+  </div>
+</div>
+
+<div class="col-auto">
+  <label for="autoSizingInputGroup" class="visually-hidden">id</label>
+  <div class="input-group">
+    <input type="hidden" class="form-control" id="autoSizingInputGroup" name="id" value="{{userid}}">
+  </div>
+</div>
+<div class="col-auto">
+  <button type="submit" class="btn btn-primary">登録</button>
+</div>
+</form>
+
+-->
+
+
+
+
+<div class="container-fluid">
+  <h2 class="py-2">Todo List</h2>
+  <table class="table" width="80%">
+    <thead>
+      <tr>
+        <th scope="col">Todo</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos %}
+      <tr>
+        <td class="text-center" width="40%">{{todo.todo}}</td>
+        <td class="text-center" width=" 30%">{{todo.date}}</td>
+        <td>
+          <form action="/remove" method="POST"><button type="submit" class="btn btn-primary" width="30%" name="id"
+              value="{{todo.userid}}.{{todo.id}}">削除</button></form>
+        </td>
+      </tr>
+      {% endfor %}
+  </table>
+  </tbody>
+  </table>
+</div>
+
+</div>
+
+<script>
+  // window.history.replaceState('', '', '/todolist');
+</script>
+{% endblock %}
